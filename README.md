@@ -19,3 +19,10 @@ The "extension" comes with a list of shortcuts, which can be called by pressing 
 - Some windows have a fixed size, they cannot be resized.
 - Some windows have a minimum size, they cannot be resized below their minimum size.
 
+##Use WindowShuffler without the matrix window
+Shuffler can also be used by cli. To use, run `shuffler_nogui` with as arguments the size of the matrix (horizontally, vertically) + the targeted position of the active window in the matrix (where 0 is the first). An example:
+
+`shuffler_nogui 2 2 0 1`
+
+will place the active window in the bottom left cell in a grid of 2 x 2.
+
