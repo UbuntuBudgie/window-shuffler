@@ -9,6 +9,8 @@ WindowShuffler is a window placement add-on. Click a window and subsequently cli
 Options include: quick-grid all windows into the current grid, take a snapshot of current layout, reset to snapshot.
 The "extension" comes with a list of shortcuts, which can be called by pressing [ i ].
 
+WindowShuffler supports multi-monitor setup. Windows are positioned in the grid -per screen-.
+
 ## Set up
 - Make sure all of the following dependencies are installed: wmctrl, xdotool, python3-gi-cairo, python3-cairo.
 - Copy all icons (all .svg files) to /usr/share/pixmaps
