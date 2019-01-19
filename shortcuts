@@ -47,18 +47,38 @@ usage_content = "Click a window and click the grid to place the " + \
                 "sizes, nor can fixed-size windows be resized. They will " + \
                 " however be positioned correctly in the grid."
 
+nogui_manual = "WindoShuffler can also be used by cli. To use, run " + \
+               "\n\n/usr/share/budgie-desktop/shuffler_nogui\n\n" + \
+               "with as arguments the size of the matrix " + \
+               "(horizontally, vertically) + the targeted position of the " + \
+               " active window in the matrix (where 0 is the first). " + \
+               "An example:\n\n/usr/share/budgie-desktop/shuffler_nogui " + \
+               "2 2 0 1\n\nwill place the active window in the bottom " +\
+               "left cell in a grid of 2 x 2.\n\nNo need to say that the " + \
+               "path: /usr/share/budgie-desktop is the default path on " + \
+               "Ubuntu Budgie, might be different per distro or if " + \
+               "you possibly installed it manually."
+
 
 class WindwoMatrix(Gtk.Window):
 
     def __init__(self):
         Gtk.Window.__init__(self, title="Usage & general shortcuts")
+        self.scrolled_window = Gtk.ScrolledWindow()
+        self.scrolled_window.set_policy(
+            Gtk.PolicyType.NEVER,
+            Gtk.PolicyType.AUTOMATIC
+        )
+        self.add(self.scrolled_window)
+        self.scrolled_window.set_border_width(10)
         self.connect("destroy", Gtk.main_quit)
         self.set_skip_taskbar_hint(True)
-        self.set_default_size(500, 100)
+        self.set_default_size(500, 600)
         self.move(200, 100)
         self.set_decorated(False)
         self.maingrid = Gtk.Grid()
-        self.add(self.maingrid)
+        self.scrolled_window.add_with_viewport(self.maingrid)
+        # self.add(self.maingrid)
         self.maingrid.set_border_width(30)
         # styling
         self.provider = Gtk.CssProvider.new()
@@ -104,6 +124,7 @@ class WindwoMatrix(Gtk.Window):
             "\nTake a snapshot of the current layout",
             "\nRestore layout to snapshot",
             "\nDismiss the grid", "\nOpen (toggle) this window",
+            "\nUse WindowShuffler without the matrix window",
         ]:
             newtitle = Gtk.Label(title, xalign=0)
             self.maingrid.attach(newtitle, 0, 10 + ntitle, 2, 1)
@@ -114,8 +135,10 @@ class WindwoMatrix(Gtk.Window):
             "[ Right ] or [ + ]", "[ Left ] or [ - ]",
             "[ Down ] or [ Ctrl ] + [ + ]", "[ Up ] or [ Ctrl ] + [ - ]",
             "[ a ]", "[ s ]", "[ u ]", "[ Escape ] or [ . ] (period)", "[ i ]",
+            nogui_manual,
         ]:
             newtext = Gtk.Label(text, xalign=0)
+            newtext.set_line_wrap(True)
             self.maingrid.attach(newtext, 0, 11 + ntext, 2, 1)
             ntext = ntext + 2
         self.set_widgetstyle(self, "window")
