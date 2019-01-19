@@ -47,7 +47,8 @@ usage_content = "Click a window and click the grid to place the " + \
                 "sizes, nor can fixed-size windows be resized. They will " + \
                 " however be positioned correctly in the grid."
 
-nogui_manual = "WindoShuffler can also be used by cli. To use, run " + \
+nogui_manual = "WindoShuffler can also be used by cli " + \
+               "(e.g. to set window tiling shortcuts). To use, run: " + \
                "\n\n/usr/share/budgie-desktop/shuffler_nogui\n\n" + \
                "with as arguments the size of the matrix " + \
                "(horizontally, vertically) + the targeted position of the " + \
