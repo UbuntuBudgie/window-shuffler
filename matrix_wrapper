@@ -25,12 +25,13 @@ if not get_window("WindowMatrix"):
 else:
     subprocess.Popen(["wmctrl", "-c", "WindowMatrix"])
 
-time.sleep(2)
+
+while not get_window("WindowMatrix"):
+    time.sleep(0.1)
 
 fail = 0
 
 while True:
-    time.sleep(0.5)
     if not get_window("WindowMatrix"):
         fail = fail + 1
         if fail == 2:
@@ -38,3 +39,4 @@ while True:
     else:
         fail = 0
         subprocess.Popen(["wmctrl", "-a", "WindowMatrix"])
+    time.sleep(0.5)

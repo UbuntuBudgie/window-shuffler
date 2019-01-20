@@ -235,6 +235,7 @@ class WindowShufflerMatrix(Gtk.Window):
             except IndexError:
                 i = 0
         self.reset_alltiles()
+        self.exit()
 
     def setup_initialgrid(self):
         # create initial button (test)
