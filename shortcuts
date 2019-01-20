@@ -47,18 +47,25 @@ usage_content = "Click a window and click the grid to place the " + \
                 "sizes, nor can fixed-size windows be resized. They will " + \
                 " however be positioned correctly in the grid."
 
-nogui_manual = "WindowShuffler can also be used by cli " + \
-               "(e.g. to set window tiling shortcuts). To use, run: " + \
-               "\n\n/usr/share/budgie-desktop/shuffler_nogui\n\n" + \
-               "with as arguments the size of the matrix " + \
+singletiling = "WindowShuffler can also be used by cli " + \
+               "(e.g. to set window tiling shortcuts). To use, run:\n\n" + \
+               "/usr/share/budgie-desktop/windowshuffler/shuffler_nogui" + \
+               "\n\n...with as arguments the size of the matrix " + \
                "(horizontally, vertically) + the targeted position of the " + \
                " active window in the matrix (where 0 is the first). " + \
-               "An example:\n\n/usr/share/budgie-desktop/shuffler_nogui " + \
-               "2 2 0 1\n\nwill place the active window in the bottom " +\
+               "An example:\n\n" + \
+               "/usr/share/budgie-desktop/windowshuffler/shuffler_nogui " + \
+               "2 2 0 1\n\n...will place the active window in the bottom " +\
                "left cell in a grid of 2 x 2.\n\nNo need to say that the " + \
                "path: /usr/share/budgie-desktop is the default path on " + \
                "Ubuntu Budgie, might be different per distro or if " + \
                "you possibly installed it manually."
+
+arrange_all = "Similarly, all windows can be moved into a grid from " + \
+              "cli, by the command (as an example):\n\n" + \
+              "/usr/share/budgie-desktop/windowshuffler/" + \
+              "shuffler_nogui arrange_all 2 2" + \
+              "\n\n...to move all windows into a 2x2 grid."
 
 
 class WindwoMatrix(Gtk.Window):
@@ -74,7 +81,7 @@ class WindwoMatrix(Gtk.Window):
         self.scrolled_window.set_border_width(10)
         self.connect("destroy", Gtk.main_quit)
         self.set_skip_taskbar_hint(True)
-        self.set_default_size(500, 600)
+        self.set_default_size(700, 700)
         self.move(200, 100)
         self.set_decorated(False)
         self.maingrid = Gtk.Grid()
@@ -125,7 +132,8 @@ class WindwoMatrix(Gtk.Window):
             "\nTake a snapshot of the current layout",
             "\nRestore layout to snapshot",
             "\nDismiss the grid", "\nOpen (toggle) this window",
-            "\nUse WindowShuffler without the matrix window",
+            "\nWindowShuffler cli: single window tiling",
+            "\nWindowShuffler cli: arrange all windows",
         ]:
             newtitle = Gtk.Label(title, xalign=0)
             self.maingrid.attach(newtitle, 0, 10 + ntitle, 2, 1)
@@ -136,7 +144,8 @@ class WindwoMatrix(Gtk.Window):
             "[ Right ] or [ + ]", "[ Left ] or [ - ]",
             "[ Down ] or [ Ctrl ] + [ + ]", "[ Up ] or [ Ctrl ] + [ - ]",
             "[ a ]", "[ s ]", "[ u ]", "[ Escape ] or [ . ] (period)", "[ i ]",
-            nogui_manual,
+            singletiling,
+            arrange_all,
         ]:
             newtext = Gtk.Label(text, xalign=0)
             newtext.set_line_wrap(True)

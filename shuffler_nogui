@@ -5,6 +5,8 @@ import gi
 gi.require_version("Wnck", "3.0")
 from gi.repository import Wnck
 import sys
+from shuffler_tools import app_path
+import subprocess
 
 
 """
@@ -21,18 +23,6 @@ A PARTICULAR PURPOSE. See the GNU General Public License for more details. You
 should have received a copy of the GNU General Public License along with this
 program.  If not, see <https://www.gnu.org/licenses/>.
 """
-
-
-xmatrix, ymatrix, xpos, ypos = [int(sys.argv[n]) for n in range(1, 5)]
-
-
-# Wnck
-screendata = Wnck.Screen.get_default()
-screendata.force_update()
-curr_subject = screendata.get_active_window()
-
-
-xycoords = [xmatrix, ymatrix]
 
 
 def move_win(row, col, playfield):
@@ -61,4 +51,21 @@ def move_window(row, col):
         pass
 
 
-move_window(xpos, ypos)
+shuffler_args = sys.argv[1:]
+
+
+if "arrange_all" in shuffler_args:
+    subprocess.Popen([
+        app_path + "/window_shuffler",
+        "arrange_all",
+        shuffler_args[1],
+        shuffler_args[2]
+    ])
+else:
+    xmatrix, ymatrix, xpos, ypos = [int(shuffler_args[n]) for n in range(0, 4)]
+    # Wnck
+    screendata = Wnck.Screen.get_default()
+    screendata.force_update()
+    curr_subject = screendata.get_active_window()
+    xycoords = [xmatrix, ymatrix]
+    move_window(xpos, ypos)
