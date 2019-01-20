@@ -4,6 +4,7 @@ import subprocess
 import gi
 gi.require_version("Wnck", "3.0")
 from gi.repository import Wnck
+from gi.repository import Gdk
 
 
 """
@@ -113,7 +114,14 @@ def windowtarget(span, cols, rows, playfield, yoffset=0, overrule=None):
     window_height = (span[1][1] + 1 - span[0][1]) * rowheight
     originx = (span[0][0] * colwidth) + playfield[0][0]
     originy = (span[0][1] * rowheight) + playfield[0][1] + yoffset
-    return [originx, originy, window_width, window_height]
+
+    # get scale factor
+    display = Gdk.Display.get_default()
+    scale_factor = display.get_window_at_pointer()[0].get_scale_factor()
+    return [originx*scale_factor,
+            originy*scale_factor,
+            window_width*scale_factor,
+            window_height*scale_factor]
 
 
 def shuffle(win, x, y, w, h):
