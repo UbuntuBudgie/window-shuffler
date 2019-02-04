@@ -117,7 +117,12 @@ def windowtarget(span, cols, rows, playfield, yoffset=0, overrule=None):
 
     # get scale factor
     display = Gdk.Display.get_default()
-    scale_factor = display.get_window_at_pointer()[0].get_scale_factor()
+    seat = display.get_default_seat()
+    device = seat.get_pointer()
+    (screen, x, y) = device.get_position()
+    monitor = display.get_monitor_at_point( x, y)
+    scale_factor = monitor.get_scale_factor()
+
     return [originx*scale_factor,
             originy*scale_factor,
             window_width*scale_factor,
