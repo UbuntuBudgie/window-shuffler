@@ -37,6 +37,17 @@ def move_win(row, col, playfield):
     )
 
 
+def toggle_max():
+    screendata = Wnck.Screen.get_default()
+    screendata.force_update()
+    curr_subject = screendata.get_active_window()
+    ismax = curr_subject.is_maximized()
+    if ismax:
+        curr_subject.unmaximize()
+    else:
+        curr_subject.maximize()
+
+
 def move_window(row, col):
     win_geodata = geo.get_windows_oncurrent(screendata)
     wins = win_geodata["windows"]
@@ -61,6 +72,8 @@ if "arrange_all" in shuffler_args:
         shuffler_args[1],
         shuffler_args[2]
     ])
+elif shuffler_args[:2] == ["1", "1"]:
+    toggle_max()
 else:
     xmatrix, ymatrix, xpos, ypos = [int(shuffler_args[n]) for n in range(0, 4)]
     # Wnck
