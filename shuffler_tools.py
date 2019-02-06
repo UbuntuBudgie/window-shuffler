@@ -120,13 +120,15 @@ def windowtarget(span, cols, rows, playfield, yoffset=0, overrule=None):
     seat = display.get_default_seat()
     device = seat.get_pointer()
     (screen, x, y) = device.get_position()
-    monitor = display.get_monitor_at_point( x, y)
+    monitor = display.get_monitor_at_point(x, y)
     scale_factor = monitor.get_scale_factor()
 
-    return [originx*scale_factor,
-            originy*scale_factor,
-            window_width*scale_factor,
-            window_height*scale_factor]
+    return [
+        originx * scale_factor,
+        originy * scale_factor,
+        window_width * scale_factor,
+        window_height * scale_factor
+    ]
 
 
 def shuffle(win, x, y, w, h):
