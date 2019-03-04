@@ -24,7 +24,6 @@ css_data = """
   font-weight: bold;
 }
 .window {
-  background-color: white;
 }
 .header {
   font-size: 30px;
