@@ -12,7 +12,7 @@ The "extension" comes with a list of shortcuts, which can be called by pressing 
 WindowShuffler supports multi-monitor setup. Windows are positioned in the grid -per screen-.
 
 ## Set up
-- Make sure all of the following dependencies are installed: wmctrl, xdotool, python3-gi-cairo, python3-cairo.
+- Make sure all of the following dependencies are installed: wmctrl, xdotool, python3-gi-cairo, python3-cairo, python3-gi gir1.2-wnck-3.0
 - Copy all icons (all .svg files) to /usr/share/pixmaps
 - Store all code files in one and the same diretory
 - Run the wrapper `matrix_wrapper` from either a shortcut or a hotcorner. Running the wrapper again toggles the grid.
