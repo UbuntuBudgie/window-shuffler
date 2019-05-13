@@ -26,7 +26,7 @@ program.  If not, see <https://www.gnu.org/licenses/>.
 
 
 def move_win(col, row, playfield):
-    totalspan = [[col, row], [col+xsize-1, row+ysize-1]]
+    totalspan = [[col, row], [col + xsize - 1, row + ysize - 1]]
     y_offs = st.get_yshift(curr_subject)
     trg = st.windowtarget(
         totalspan, xycoords[0], xycoords[1], playfield, y_offs,
@@ -78,10 +78,14 @@ else:
     xmatrix, ymatrix, xpos, ypos = [int(shuffler_args[n]) for n in range(0, 4)]
     if len(shuffler_args) == 6:
         xsize, ysize = [int(shuffler_args[n]) for n in range(4, 6)]
-        if xsize > xmatrix - xpos: xsize = xmatrix - xpos
-        elif xsize < 1: xsize = 1
-        if ysize > ymatrix - ypos: ysize = ymatrix - ypos
-        elif ysize < 1: ysize = 1
+        if xsize > xmatrix - xpos:
+            xsize = xmatrix - xpos
+        elif xsize < 1:
+            xsize = 1
+        if ysize > ymatrix - ypos:
+            ysize = ymatrix - ypos
+        elif ysize < 1:
+            ysize = 1
     else:
         xsize, ysize = 1, 1
 
