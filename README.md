@@ -28,3 +28,8 @@ Shuffler can also be used by cli. To use, run `shuffler_nogui` with as arguments
 
 will place the active window in the bottom left cell in a grid of 2 x 2.
 
+To make the window span multiple cells two extra arguments can be provided, for example:
+
+`shuffler_nogui 3 3 1 1 2 2`
+
+will place the active window at the bottom right hand corner of a 3 x 3 grid spanning 2 columns and rows.
