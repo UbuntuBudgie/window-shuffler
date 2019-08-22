@@ -2,7 +2,7 @@
 import gi
 gi.require_version("Gtk", "3.0")
 gi.require_version("Wnck", "3.0")
-from gi.repository import Gtk, Wnck, Gdk
+from gi.repository import Gtk, Wnck, Gdk, Gio
 import cairo
 import subprocess
 import os
@@ -81,7 +81,7 @@ css_data = """
 
 class WindowShufflerMatrix(Gtk.Window):
 
-    def __init__(self):
+    def __init__(self, args):
         Gtk.Window.__init__(self, title="WindowMatrix")
         self.connect("destroy", Gtk.main_quit)
         self.set_position(Gtk.WindowPosition.CENTER_ALWAYS)
@@ -163,6 +163,17 @@ class WindowShufflerMatrix(Gtk.Window):
         self.firstrun()
         # create_rows
         self.setup_initialgrid()
+
+        schema = 'org.gnome.settings-daemon.plugins.media-keys.' + \
+            'custom-keybinding'
+        path = '/org/gnome/settings-daemon/plugins/media-keys/' + \
+            'custom-keybindings/windowshuffler/'
+        if '--menulaunch' in matrixargs:
+            label = "Press "
+            settings = Gio.Settings.new_with_path(schema, path)
+            var = settings.get_string('binding')
+            if var != '':
+                self.maingrid.attach(Gtk.Label(label + var), 0, 99, 2, 1)
         # show stuff
         self.maingrid.show_all()
         self.show_all()
@@ -664,4 +675,4 @@ matrixargs = sys.argv[1:]
 if "arrange_all" in matrixargs:
     arrange_all(int(matrixargs[1]), int(matrixargs[2]))
 else:
-    WindowShufflerMatrix()
+    WindowShufflerMatrix(matrixargs)

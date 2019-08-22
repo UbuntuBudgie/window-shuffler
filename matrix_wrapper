@@ -2,6 +2,7 @@
 import os
 import subprocess
 import time
+import sys
 
 from shuffler_tools import get_window, app_path
 
@@ -20,8 +21,14 @@ should have received a copy of the GNU General Public License along with this
 program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
+matrixargs = sys.argv[1:]
+
 if not get_window("WindowMatrix"):
-    subprocess.Popen(os.path.join(app_path, "window_shuffler"))
+    if len(matrixargs) > 0:
+        param = matrixargs[0]
+    else:
+        param = ''
+    subprocess.Popen([os.path.join(app_path, "window_shuffler"), param])
 else:
     subprocess.Popen(["wmctrl", "-c", "WindowMatrix"])
 
