@@ -3,4 +3,5 @@ Type=Application
 Name=Window Shuffler
 Exec=/usr/share/budgie-desktop/windowshuffler/matrix_wrapper --menulaunch
 Icon=windowshuffler-symbolic
-Categories=GTK;X-GNOME-Utilities;
+Categories=GNOME;GTK;Utility;X-GNOME-Utilities;
+Keywords=System;Window;Tile;
