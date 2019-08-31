@@ -169,11 +169,14 @@ class WindowShufflerMatrix(Gtk.Window):
         path = '/org/gnome/settings-daemon/plugins/media-keys/' + \
             'custom-keybindings/windowshuffler/'
         if '--menulaunch' in matrixargs:
-            label = "Press "
+            labelstr = "Press "
             settings = Gio.Settings.new_with_path(schema, path)
             var = settings.get_string('binding')
             if var != '':
-                self.maingrid.attach(Gtk.Label(label + var), 0, 99, 2, 1)
+                labelobj = Gtk.Label(labelstr + var)
+                context = labelobj.get_style_context()
+                context.add_class('background')
+                self.maingrid.attach(labelobj, 0, 99, 2, 1)
         # show stuff
         self.maingrid.show_all()
         self.show_all()
