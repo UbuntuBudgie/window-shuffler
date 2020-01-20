@@ -1,5 +1,7 @@
 # WindowShuffler
 
+**This has been superseded by the window-shuffler work in the budgie-extras repo**
+
 GUI and keyboard friendly window arranger for the budgie and mate desktop
 
 Demo: https://www.youtube.com/watch?v=Ii4n8H4XEzc
